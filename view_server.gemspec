@@ -6,6 +6,10 @@ require 'view_server/version'
 Gem::Specification.new do |gem|
   gem.name          = "view_server"
   gem.version       = ViewServer::VERSION
+  # gem.add_dependency "put dependency here"
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency "bundler", "~> 1.0"
+  gem.add_development_dependency 'minitest'
   gem.authors       = ["Martin Chabot"]
   gem.email         = ["chabotm@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}

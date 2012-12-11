@@ -12,8 +12,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'minitest'
   gem.authors       = ["Martin Chabot"]
   gem.email         = ["chabotm@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Allow local viewing of remote files}
+  gem.summary       = %q{Allow local viewing of remote files}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

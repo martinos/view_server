@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+# server
+require 'tmpdir'
+require 'fileutils'
+require 'digest'
+
+require "rubygems"
+require "clip"
+
+class TmpFile
+  def self.open(prefix = "", suffix= "")
+    begin
+      digest = Digest::MD5.hexdigest((Time.now.to_f + rand(10000)).to_s)
+      file_name = File.join(Dir.tmpdir, prefix + digest + suffix )
+      File.open(file_name, 'w+' ) do |f|
+        yield f 
+      end
+      ensure
+        FileUtils::rm(file_name) if File.exist?(file_name)
+      end
+  end
+end
+
+if $0 == __FILE__
+  options = Clip do |p|
+    p.flag 's', 'server',:desc => 'Is a server', :default => false
+  
+    p.optional 'p', 'port', :desc => 'The port', :default => 10021 do |v|
+      v.to_i # always deal with integers
+    end
+    p.flag 'c', 'copy_to_clipboard', :desc => "Send to clipboard" 
+    p.flag 'P', 'paste_from_clipboard', :desc => "Read from clipboard" 
+    p.flag 'v', 'verbose', :desc => 'Make it chatty'
+  end
+
+  if options.valid?
+    if options.verbose?
+      puts options.host
+      puts options.port
+      puts 'files:'
+      options.files.each do |f|
+        puts "\t#{f}"
+      end
+    end
+  else
+    # print error message(s) and usage
+    $stderr.puts options.to_s
+  end
+
+ 
+  require 'drb'
+
+  if options.server?
+    class Viewer
+      def affiche(file_ext, data)
+        TmpFile.open( "", "." + file_ext) do |a|
+          a << data
+          a.close
+          `open #{a.path} `
+          sleep 5 #We don't want to delete the file before it's loaded
+        end
+      end
+      
+      def to_cb(data) # To clipboard
+        File.open("#{ENV['HOME']}/tmp/clipboard", "w"){|a| a << data}
+        IO.popen('pbcopy', 'w'){|a| a << data}
+      end
+
+      def paste # From clipboard
+        `pbpaste`
+      end
+    end
+
+    DRb.start_service "druby://localhost:#{options.port}", Viewer.new
+    puts DRb.uri
+
+    DRb.thread.join
+  else
+    DRb.start_service
+    obj = DRbObject.new(nil, "druby://localhost:#{options.port}")
+
+    if options.copy_to_clipboard?
+      obj.to_cb(STDIN.read)
+    elsif options.paste_from_clipboard?
+      print obj.paste
+    else
+      if obj.remaining?
+        affiche("csv", "2,4,5\n3,4,5")
+      end  
+    end
+  end
+end

@@ -1,4 +1,3 @@
-require 'tmp_file'
 require 'drb'
 
 module ViewServer

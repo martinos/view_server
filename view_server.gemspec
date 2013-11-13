@@ -7,9 +7,12 @@ Gem::Specification.new do |gem|
   gem.name          = "view_server"
   gem.version       = ViewServer::VERSION
   gem.add_dependency "clip"
+  gem.add_dependency "main"
   gem.add_development_dependency 'rake'
   gem.add_development_dependency "bundler", "~> 1.0"
   gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'pry-nav'
   gem.authors       = ["Martin Chabot"]
   gem.email         = ["chabotm@gmail.com"]
   gem.description   = %q{Allow local viewing of remote files}

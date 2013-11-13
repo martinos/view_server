@@ -9,3 +9,4 @@ _yardoc
 coverage
 .DS_store
 doc/
+*.swp

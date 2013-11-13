@@ -2,8 +2,10 @@ require 'drb'
 
 module ViewServer
   class Server
-    def affiche(file_ext, data)
-      TmpFile.open( "", "." + file_ext) do |a|
+    # I wanted to use the display method but it conflicts 
+    # with the Object#display method
+    def show(data, file_ext = 'txt')
+      TmpFile.open("", "." + file_ext) do |a|
         a << data
         a.close
         `open #{a.path} `
@@ -20,8 +22,8 @@ module ViewServer
       `pbpaste`
     end
 
-    def self.serve(options)
-      DRb.start_service "druby://localhost:#{options.port}", Viewer.new
+    def self.serve(port)
+      DRb.start_service "druby://localhost:#{port}", Server.new
       puts DRb.uri
       DRb.thread.join
     end

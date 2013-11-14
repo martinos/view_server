@@ -1,5 +1,4 @@
 require 'drb'
-require 'pry'
 
 module ViewServer
   class Client

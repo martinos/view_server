@@ -21,7 +21,12 @@ class ShowRunner
       opts.on("-e", "--extension EXTENSION", "File extension") do |v|
         options[:ext] = v
       end
+
+      opts.on("-p", "--port PORT", "Port number") do |v|
+        options[:ext] = v
+      end
     end
+
     opt_parser.parse!(args)
     filename = ARGV.first
     if filename
@@ -31,9 +36,15 @@ class ShowRunner
       data = $stdin.read
       ext = options.fetch(:ext) {'txt'}
     end
-    ViewServer::Client.new.server.show(data, ext)
+
+    {:data => data, :ext => ext }
+  end
+
+  def self.run(args)
+    opts = self.parse args
+    ViewServer::Client.new.server.show(opts[:data], opts[:ext])
   end
 end
-options = ShowRunner.parse(ARGV)
+options = ShowRunner.run(ARGV)
 
 

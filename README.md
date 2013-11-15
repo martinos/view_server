@@ -1,3 +1,4 @@
+Coco
 # ViewServer
 
 TODO: Write a gem description

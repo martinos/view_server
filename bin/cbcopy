@@ -3,9 +3,5 @@
 require 'main'
 require 'view_server'
 
-Main do
-  def run
-    ViewServer::Client.new.server.to_cb($stdin.read)
-  end
-end
+ViewServer::CbCopyRunner.run
 

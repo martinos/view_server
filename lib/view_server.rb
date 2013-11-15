@@ -7,4 +7,5 @@ module ViewServer
   autoload :TmpFile,      'view_server/tmp_file'
   autoload :ShowRunner,   'view_server/show_runner'
   autoload :CbCopyRunner, 'view_server/cbcopy_runner'
+  autoload :CbPasteRunner, 'view_server/cbpaste_runner'
 end

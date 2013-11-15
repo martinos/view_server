@@ -3,9 +3,4 @@
 require 'main'
 require 'view_server'
 
-Main do
-  def run
-    $stdout << ViewServer::Client.new.server.paste
-  end
-end
-
+ViewServer::CbPasteRunner.run

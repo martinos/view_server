@@ -1,10 +1,10 @@
 # view_server
 ## Description
 
-Sometimes when working on a remote server you want to view data in a local app like Excel. It can be very teadious because you have to save the data into a file then copy it using scp. Then afterward opening it with the app of your choice. If you have to do this many times a day it can really slow down your workflow.
+Sometimes when working on a remote server you want to view data in a local app like Excel. The traditionnal way to acheive this is to save the data into a file then copy it using scp, then opening it with the app of your choice. If you have to do this many times a day it can really slow down your workflow.
 With the view\_server it's very easy to view a file.
 
-Sometimes you also need to copy text into your clipboard from the remote server. The view\_server can help you with that.
+view\_server also offers you a way to access your local clipboard from a remote server.
 
 ## Installation
 
@@ -26,7 +26,7 @@ Then install the gem on the remote server:
 
     gem install view_server
 
-Then on the irb console on the remote server:
+Now that your setup is complete. You can use view data from the remote server. Open a irb console on the remote server and try this:
 
     require 'view_server'
 
@@ -37,7 +37,7 @@ Then on the irb console on the remote server:
 
 This will open Excel with a spreadsheet filled with the data defined in the here document.
 
-The last paramenter of the show method represents the file extension of the temporary file that will be created before being opened on your local computer.
+The last paramenter of the show method represents the file extension of the temporary file that will be created before being opened on your local computer. If you want to open it with your text editor just change this parameter with 'txt'
 
 There is also a command line utility to that you can use.
 

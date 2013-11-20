@@ -6,7 +6,7 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
-  t.pattern = "test/*_test.rb"
+  t.pattern = "spec/*_spec.rb"
   # To avoid requirement of File.expand_path(File.dirname(__FILE__) + 'test_helper') from test files
   t.libs << 'test'
 end

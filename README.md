@@ -55,8 +55,8 @@ You can also paste to the remote server:
 
 ## Simplifying the ssh command
 
-It can be teadious to add the -R parameter each time that you want to ssh to the remote server. In order to create the tunnel automaticaly you can add this at the end of your.
-In order to create the tunnel automaticaly you can add this at the end of your .ssh/ssh.config
+It can be teadious to add the -R parameter each time that you want to ssh to the remote server.
+In order to create the tunnel automaticaly you can add this at the end of your ~/.ssh/config
 
     Host * !*github* !*bitbucket*
     RemoteForward 10021 localhost:10021
@@ -66,6 +66,7 @@ The first line tells ssh to create the tunnel for all ssh connection except for 
 Now each time that you connect to a remote server with ssh the tunnel will be made, to need to add the -R option.
 
 ## TODO
+
 Adding tests
 
 ## Contributing

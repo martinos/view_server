@@ -26,7 +26,7 @@ Then install the gem on the remote server:
 
     gem install view_server
 
-Now that your setup is complete. You can use view data from the remote server. Open a irb console on the remote server and try this:
+Now that your setup is complete. You can view data from the remote server. Open a irb console on the remote server and try this:
 
     require 'view_server'
 
@@ -39,7 +39,7 @@ This will open Excel with a spreadsheet filled with the data defined in the here
 
 The last paramenter of the show method represents the file extension of the temporary file that will be created before being opened on your local computer. If you want to open it with your text editor just change this parameter with 'txt'
 
-There is also a command line utility to that you can use.
+There is also a command line utility to that you can use:
 
     echo  -e "1,2\n2,3" | show -e csv
 
@@ -56,7 +56,7 @@ You can also paste to the remote server:
 ## Simplifying the ssh command
 
 It can be teadious to add the -R parameter each time that you want to ssh to the remote server.
-In order to create the tunnel automaticaly you can add this at the end of your ~/.ssh/config
+In order to create the tunnel automaticaly when you ssh to a server you can add this at the end of your ~/.ssh/config
 
     Host * !*github* !*bitbucket*
     RemoteForward 10021 localhost:10021

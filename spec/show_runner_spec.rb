@@ -9,4 +9,14 @@ describe 'ShowRunner' do
       ViewServer::ShowRunner.run %w[-e csv -p -1], launcher
     end
   end
+
+  it 'should return the help when -h' do
+    launcher = mock('launcher')
+
+    out_str = capture_io('') do
+      ViewServer::ShowRunner.run %w[-h], launcher
+    end
+    out_str.must_match /-e/
+    out_str.must_match /-p/
+  end
 end

@@ -3,7 +3,7 @@ require 'optparse'
 module ViewServer
   class ShowRunner
     def self.parse(args)
-      options = {}
+      options = {:port => 10021}
       opt_parser = OptionParser.new do |opts|
         opts.banner = "Usage: show [options] [file]"
 
@@ -15,12 +15,13 @@ module ViewServer
           options[:ext] = v
         end
 
-        opts.on("-p", "--port PORT", "Port number") do |v|
-          options[:ext] = v
+        opts.on("-p", "--port PORT", "Port number. Default is 10021") do |v|
+          options[:port] = Integer(v)
         end
       end
 
       opt_parser.parse!(args)
+
       filename = ARGV.first
       if filename
         data = File.read filename
@@ -30,12 +31,17 @@ module ViewServer
         ext = options.fetch(:ext) {'txt'}
       end
 
-      {:data => data, :ext => ext }
+      options.merge({:data => data, :ext => ext })
     end
 
-    def self.run(args)
-      opts = self.parse args
-      ViewServer::Client.new.server.show(opts[:data], opts[:ext])
+    def self.run(args, launcher = Launcher.new)
+      opts = parse(args)
+
+      if opts[:port] == -1
+        ViewServer::Server.new(launcher).show(opts[:data], opts[:ext])
+      else
+        ViewServer::Client.new(opts[:port]).show(opts[:data], opts[:ext])
+      end
     end
   end
 end

@@ -1,11 +1,13 @@
 require 'drb'
+require 'clipboard'
 
 module ViewServer
   class Server
-    attr_reader :launcher
+    attr_reader :launcher, :clipboard
 
     def initialize(launcher = Launcher.new)
       @launcher = launcher
+      @clipboard = Clipboard
     end
 
     # I wanted to use the display method but it conflicts 
@@ -15,12 +17,11 @@ module ViewServer
     end
 
     def to_cb(data) # To clipboard
-      File.open("#{ENV['HOME']}/tmp/clipboard", "w"){|a| a << data}
-      IO.popen('pbcopy', 'w'){|a| a << data}
+      clipboard.copy(data)
     end
 
     def paste # From clipboard
-      `pbpaste`
+      clipboard.paste(data)
     end
 
     def self.serve(launcher = Launcher.new, port)

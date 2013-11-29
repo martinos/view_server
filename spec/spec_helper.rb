@@ -35,10 +35,10 @@ class MiniTest::Spec
     $stdin = StringIO.new(in_str)
     $stdout = StringIO.new
     yield
-  ensure
     out_str = $stdout.string
+    out_str
+  ensure
     $stdin, $stdout = old_stdin, old_stdout
-    return out_str
   end
 
   def raise_on_error(status, stderr, executable, stdout)

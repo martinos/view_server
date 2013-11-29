@@ -7,10 +7,6 @@ module ViewServer
       opt_parser = OptionParser.new do |opts|
         opts.banner = "Usage: show [options] [file]"
 
-        opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
-          options[:verbose] = v
-        end
-
         opts.on("-e", "--extension EXTENSION", "File extension") do |v|
           options[:ext] = v
         end

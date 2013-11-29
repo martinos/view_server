@@ -3,5 +3,4 @@
 require 'main'
 require 'view_server'
 
-ViewServer::CbCopyRunner.run
-
+ViewServer::CbCopyRunner.run(ARGV)

@@ -21,7 +21,7 @@ module ViewServer
     end
 
     def paste # From clipboard
-      clipboard.paste(data)
+      clipboard.paste
     end
 
     def self.serve(launcher = Launcher.new, port)

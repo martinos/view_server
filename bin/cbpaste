@@ -3,4 +3,4 @@
 require 'main'
 require 'view_server'
 
-ViewServer::CbPasteRunner.run
+ViewServer::CbPasteRunner.run(ARGV)

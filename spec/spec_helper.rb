@@ -1,10 +1,10 @@
 $:.unshift File.expand_path('..', __FILE__)
 $:.unshift File.expand_path('../../lib', __FILE__)
 
-require 'minitest/spec'
+gem 'minitest'
 require 'minitest/autorun'
+require 'minitest/spec'
 require 'mocha/setup'
-
 require 'view_server'
 require 'fileutils'
 require 'stringio'

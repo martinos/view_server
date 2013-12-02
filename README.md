@@ -80,10 +80,6 @@ The first line tells ssh to create the tunnel for all ssh connection except for 
 
 Now each time that you connect to a remote server with ssh the tunnel will be made, to need to add the -R option.
 
-## TODO
-
-Adding tests
-
 ## Contributing
 
 1. Fork it

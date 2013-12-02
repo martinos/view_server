@@ -18,12 +18,13 @@ module ViewServer
 
     def self.run(args = [])
       opts = parse(args)
-      server = if opts[:port] == -1
+      client = if opts[:port] == -1
         ViewServer::Server.new(nil)
       else
         ViewServer::Client.new(opts[:port])
       end
-      $stdout << server.paste
+      clipboard = client.clipboard
+      $stdout << clipboard.paste
     end
   end
 end

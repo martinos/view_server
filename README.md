@@ -1,4 +1,5 @@
 # view_server
+
 ## Description
 
 Sometimes when working on a remote server you want to view data in a local app like Excel. The traditionnal way to acheive this is to save the data into a file then copy it using scp, then opening it with the app of your choice. If you have to do this many times a day it can really slow down your workflow.
@@ -12,7 +13,7 @@ view\_server also offers you a way to access your local clipboard from a remote 
 
 ## Usage
 
-### Show file
+### View file on local computer
 
 Start the server on your local machine. At the moment only OS X is supported.
 
@@ -25,6 +26,8 @@ Now open a ssh session to the remote server and create a reverse tunnel to your 
 Then install the gem on the remote server:
 
     gem install view_server
+
+#### With Ruby
 
 Now that your setup is complete. You can view data from the remote server. Open a irb console on the remote server and try this:
 
@@ -39,11 +42,23 @@ This will open Excel with a spreadsheet filled with the data defined in the here
 
 The last paramenter of the show method represents the file extension of the temporary file that will be created before being opened on your local computer. If you want to open it with your text editor just change this parameter with 'txt'
 
+#### At the Shell
+
 There is also a command line utility to that you can use:
 
     echo  -e "1,2\n2,3" | show -e csv
 
 ### Clipboard support
+
+#### With Ruby
+
+    require 'view_server'
+    client = ViewServer::Client.new
+    clipboard = client.clipboard
+    clipboard.copy('coco')
+    clipboard_content = clipboard.paste
+
+#### At the shell
 
 On the remote server you can copy to the local clipboard:
 

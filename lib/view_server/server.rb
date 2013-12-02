@@ -16,14 +16,6 @@ module ViewServer
       launcher.launch(data, file_ext)
     end
 
-    def to_cb(data) # To clipboard
-      clipboard.copy(data)
-    end
-
-    def paste # From clipboard
-      clipboard.paste
-    end
-
     def self.serve(launcher = Launcher.new, port)
       DRb.start_service "druby://localhost:#{port}", Server.new
       puts DRb.uri

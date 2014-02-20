@@ -1,5 +1,6 @@
 require 'drb'
 require 'delegate'
+require 'view_server/my_clipboard'
 
 module ViewServer
   class Client < Delegator

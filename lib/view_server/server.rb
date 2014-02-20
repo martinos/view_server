@@ -1,5 +1,6 @@
 require 'drb'
 require 'clipboard'
+require 'view_server/my_clipboard'
 
 module ViewServer
   class Server
@@ -7,7 +8,7 @@ module ViewServer
 
     def initialize(launcher = Launcher.new)
       @launcher = launcher
-      @clipboard = Clipboard
+      @clipboard = MyClipboard
     end
 
     # I wanted to use the display method but it conflicts 

@@ -23,8 +23,7 @@ module ViewServer
       else
         ViewServer::Client.new(opts[:port])
       end
-      clipboard = client.clipboard
-      $stdout << clipboard.paste
+      $stdout << client.paste
     end
   end
 end

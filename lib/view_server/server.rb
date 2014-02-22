@@ -4,7 +4,7 @@ require 'view_server/my_clipboard'
 
 module ViewServer
   class Server
-    attr_reader :launcher, :clipboard
+    attr_reader :launcher
 
     def initialize(launcher = Launcher.new)
       @launcher = launcher
@@ -15,6 +15,14 @@ module ViewServer
     # with the Object#display method
     def show(data, file_ext = 'txt')
       launcher.launch(data, file_ext)
+    end
+
+    def copy(str)
+      @clipboard.copy(str)
+    end
+
+    def paste
+      @clipboard.paste
     end
 
     def self.serve(launcher = Launcher.new, port)

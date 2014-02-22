@@ -24,8 +24,7 @@ module ViewServer
         ViewServer::Client.new(opts[:port])
       end
       content = $stdin.read
-      clipboard = client.clipboard
-      clipboard.copy(content)
+      client.copy(content)
     end
   end
 end
